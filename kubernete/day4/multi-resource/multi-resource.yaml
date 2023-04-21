@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: ravinder-k8s
+spec: {}
+status: {}
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: ravinder-pod
+  name: ravinder-pod
+  namespace: ravinder-k8s # adding this line 
+spec:
+  containers:
+  - command:
+    - sleep
+    - "10000"
+    image: ubuntu
+    name: ravinder-pod
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ravinder-svc
+  name: ravinder-svc
+  namespace: ravinder-k8s # adding this line 
+spec:
+  ports:
+  - name: 1234-80
+    port: 1234
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: ravinder-svc
+  type: NodePort
+status:
+  loadBalancer: {}

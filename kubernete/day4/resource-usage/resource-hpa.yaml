@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ravinder-hpa-ui
+  name: ravinder-hpa-ui
+  namespace: ravinder-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ravinder-hpa-ui
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ravinder-hpa-ui
+    spec:
+      containers:
+      - image: adminer
+        name: adminer
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: 100M
+            cpu: 50m 
+          limits:
+            memory: 400M 
+            cpu: 200m # 1 vcpu = 1000m (milicore)
+status: {}
