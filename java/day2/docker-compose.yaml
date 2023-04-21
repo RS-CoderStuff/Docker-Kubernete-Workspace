@@ -1,0 +1,13 @@
+version: '3.8'
+# 3.x is already creating a new docker bridge
+networks: # creating bridge with custom name
+  ravinder11: 
+services: 
+  ravinder-java-app:
+    image: ravinderjava:v1 
+    build:
+      context: . 
+      dockerfile: java8.dockerfile
+    container_name: ravinderjc1 
+    networks: # attaching container to the custom bridge 
+    - ravinder11

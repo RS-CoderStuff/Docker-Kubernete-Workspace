@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: ravinder-webapp
+  name: ravinder-webapp
+  namespace: ravinder-ns
+spec:
+  containers:
+  - image: docker.io/bitgallon/ravinder-customer:v1
+    name: ravinder-webapp
+    env: # creating or using env 
+    - name: deploy # name of variable 
+      value: hello # passing value 
+    ports:
+    - containerPort: 80
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

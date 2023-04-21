@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ravinder-springapp
+  name: ravinder-springapp
+  namespace: ravinder-ns
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ravinder-springapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ravinder-springapp
+    spec:
+      containers:
+      - image: docker.io/bitgallon/oraclespringapp:v1
+        name: oraclespringapp
+        ports:
+        - containerPort: 8080
+        resources: {}
+status: {}
