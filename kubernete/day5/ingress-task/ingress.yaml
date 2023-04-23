@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ravinder-ui-rule
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx # class name -- using nginx 
+  rules:
+  - host: ravinder.bitgallon.com 
+    http:
+      paths:
+      - path: / # home path of my app 
+        pathType: Prefix
+        backend:
+          service: # service details 
+            name: ravinder-svc
+            port:
+              number: 1234

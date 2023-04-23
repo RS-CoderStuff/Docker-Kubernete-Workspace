@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ravinder-cust-ui
+  name: ravinder-cust-ui
+  namespace: ravinder-ns
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ravinder-cust-ui
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ravinder-cust-ui
+    spec:
+      containers:
+      - image: docker.io/bitgallon/ravinder-customer:v1
+        name: ravinder-customer
+        ports:
+        - containerPort: 80
+        env: # calling / creat env 
+        - name: deploy # name of orginal variable 
+          valueFrom:
+            configMapKeyRef: # calling configmap 
+              name: ravinder-vars-cm
+              key: app1 
+        resources: {}
+status: {}
